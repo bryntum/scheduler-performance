@@ -46,9 +46,10 @@ async function init() {
                     data       : events
                 },
 
-                viewPreset : 'hourAndDay',
-                startDate  : new Date(2019, 8, 20, 8),
-                endDate    : new Date(2019, 8, 29)
+                viewPreset          : 'hourAndDay',
+                startDate           : new Date(2019, 8, 20, 8),
+                endDate             : new Date(2019, 8, 29),
+                useInitialAnimation : false
             });
 
             setTimeout(() => {
