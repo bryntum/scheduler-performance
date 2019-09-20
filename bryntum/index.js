@@ -50,7 +50,20 @@ async function init() {
                     data       : events
                 },
 
-                viewPreset          : 'hourAndDay',
+                viewPreset          : {
+                    name         : 'hourAndDay',
+                    tickWidth    : 40,
+                    headerConfig : {
+                        middle : {
+                            unit       : 'hour',
+                            dateFormat : 'HH'
+                        },
+                        top    : {
+                            unit       : 'day',
+                            dateFormat : 'MMMM D'
+                        }
+                    }
+                },
                 startDate           : new Date(2019, 8, 20, 8),
                 endDate             : new Date(2019, 8, 29),
                 useInitialAnimation : false,

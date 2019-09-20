@@ -113,7 +113,7 @@ export class Scroller {
      * @param {Function} callback Callback to call when done scrolling
      * @param {Function} scrollFn Function to call instead of setting `scrollTop` on the element
      */
-    static scroll({ element, distance = 60000, speed = 5, maxSpeed = 1250, acceleration = 1, callback, scrollFn }) {
+    static scroll({ element, distance = 75000, speed = 5, maxSpeed = 1500, acceleration = 1.5, callback, scrollFn }) {
         let scrollTop = 0;
 
         console.log('Starting to scroll', element);
