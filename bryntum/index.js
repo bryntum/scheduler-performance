@@ -8,6 +8,12 @@ async function init() {
     const events = await eventResponse.json();
     //const events = EventGenerator.generate();
 
+    // Map to format used by bryntum
+    resources.forEach(r => {
+        r.name = r.firstName + ' ' + r.surname;
+    });
+
+
     RenderTimer.start({
         callback() {
             const scheduler = window.scheduler = new Scheduler({
@@ -31,9 +37,7 @@ async function init() {
                 },
 
                 columns : [
-                    { field : 'id', text : 'Id', width : 100 },
-                    { field : 'firstName', text : 'First name', width : 130 },
-                    { field : 'surname', text : 'Surname', width : 130 }
+                    { field : 'name', text : 'Name', width : 130 }
                 ],
 
                 resourceStore : {
@@ -49,7 +53,10 @@ async function init() {
                 viewPreset          : 'hourAndDay',
                 startDate           : new Date(2019, 8, 20, 8),
                 endDate             : new Date(2019, 8, 29),
-                useInitialAnimation : false
+                useInitialAnimation : false,
+
+                rowHeight : 23,
+                barMargin : 1
             });
 
             setTimeout(() => {

@@ -32,7 +32,7 @@ async function init() {
                 x_start         : 8,
                 scrollable      : true,
                 scroll_position : new Date(2019, 8, 20),
-                column_width    : 80,
+                column_width    : 70,
                 x_length        : 24 * days,
                 y_unit          : resources,
                 y_property      : 'resourceId',
@@ -41,7 +41,7 @@ async function init() {
                     x_unit : 'day', // unit which should be used for second scale
                     x_date : '%F %d' // date format which should be used for second scale, 'July 01'
                 },
-                event_dy : 115
+                dx              : 130
             });
 
             scheduler.init('container', new Date(2019, 8, 20), 'timeline');
