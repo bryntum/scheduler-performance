@@ -13,7 +13,6 @@ async function init() {
         r.name = r.firstName + ' ' + r.surname;
     });
 
-
     RenderTimer.start({
         callback() {
             const scheduler = window.scheduler = new Scheduler({
@@ -52,7 +51,7 @@ async function init() {
 
                 viewPreset          : {
                     name         : 'hourAndDay',
-                    tickWidth    : 40,
+                    tickWidth    : 20,
                     headerConfig : {
                         middle : {
                             unit       : 'hour',

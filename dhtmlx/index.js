@@ -32,7 +32,7 @@ async function init() {
                 x_start         : 8,
                 scrollable      : true,
                 scroll_position : new Date(2019, 8, 20),
-                column_width    : 40,
+                column_width    : 20,
                 x_length        : 24 * days,
                 y_unit          : resources,
                 y_property      : 'resourceId',
