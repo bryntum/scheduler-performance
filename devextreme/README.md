@@ -2,9 +2,9 @@
 
 ## Prerequisites
 
-1. Download Bryntum Scheduler from Bryntums CustomerZone
-2. Copy `scheduler.stockhol.css` to the `css` folder
-3. Copy `scheduler.module.js` to the `js` folder
+1. Download the trial of DevExtreme from https://js.devexpress.com/Download/
+2. Copy `dx.common.css` and `dx.light.css` to the `css` folder
+3. Copy `dx.all.js` and `jquery.min.js` to the `js` folder
 
 ## Measure
 

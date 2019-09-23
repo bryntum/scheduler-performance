@@ -14,7 +14,7 @@ To make comparison as fair as possible the following actions were taken:
 * The same dataset consisting of 2,500 resources and 50,000 events (20 per resource) in JSON format is used throughout.
 * Schedulers have been configured with the same set of columns, with custom cell renderers matching each other as close 
 as possible.
-* All use the same size on their container: 1280 x 1024 px.
+* All use the same size on their container: 1024 x 768 px.
 * Scrollbars where turned on.
 
 Measurements where taken using the same approach and same code for the different schedulers:
@@ -32,6 +32,10 @@ All measurements taken on a 2016 MacBook Pro 13-inch (2 GHz Intel Core i5, 8GB R
 | Grid          |Initial rendering | Average FPS |
 |---------------|------------------|-------------|
 | Bryntum       |                  |             |
+| DevExtreme    |                  |             |
+| DHTMLX        |                  |             |
+| FullCalendar  |                  |             |
+| SyncFusion    |                  |             |
 
 
 The full set of results can be viewed in this [Google Sheet](https://docs.google.com/spreadsheets/d/1zZ7YqjYycOfx2oR25QRJWU6W3gHb7qSksqN6rnY6dyg)

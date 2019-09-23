@@ -2,24 +2,27 @@ import { RenderTimer, FPS, Scroller } from '../util/util.js';
 
 $(async function () {
     const resourceResponse = await fetch('../util/2500-resources.json');
-    const resources = await resourceResponse.json();
+    let resources = await resourceResponse.json();
     const eventResponse = await fetch('../util/50000-events.json');
-    const events = await eventResponse.json();
+    let events = await eventResponse.json();
 
-    // Map to format used by bryntum
+    resources = resources.filter(r => r.id < 500);
+    events = events.filter(r => r.resourceId < 500);
+
+    // Map to format used by devextreme
     events.forEach(e => {
         e.text = e.name;
     });
 
-    // Map to format used by bryntum
+    // Map to format used by devextreme
     resources.forEach(r => {
         r.text = r.firstName + ' ' + r.surname;
     });
 
-    RenderTimer.start({
+    await RenderTimer.start({
         callback() {
             $("#container").dxScheduler({
-                dataSource               : events.filter(e => e.resourceId < 250),
+                dataSource               : events,
                 views                    : [ "timelineWeek" ],
                 currentView              : "timelineWeek",
                 currentDate              : new Date(2019, 8, 20),
@@ -34,22 +37,22 @@ $(async function () {
                 resources                : [ {
                     fieldExpr     : "resourceId",
                     allowMultiple : false,
-                    dataSource    : resources.filter(r => r.id < 250),
+                    dataSource    : resources,
                     label         : "Name"
                 } ],
                 timeCellTemplate         : itemData => itemData.date.getHours()
             });
-
-            setTimeout(() => {
-                FPS.start();
-                Scroller.scroll({
-                    distance : 20000, // Cannot render larger dataset, so cannot scroll further
-                    element : document.querySelector('.dx-scheduler-date-table-scrollable .dx-scrollable-container'),
-                    callback() {
-                        FPS.stop();
-                    }
-                });
-            }, 500);
         }
     });
+
+    setTimeout(() => {
+        FPS.start();
+        Scroller.scroll({
+            element : document.querySelector('.dx-scheduler-date-table-scrollable .dx-scrollable-container'),
+            distance : 30000, // Cannot render larger dataset, so cannot scroll further
+            callback() {
+                FPS.stop();
+            }
+        });
+    }, 500);
 });

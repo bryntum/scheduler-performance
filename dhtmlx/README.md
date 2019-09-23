@@ -2,9 +2,9 @@
 
 ## Prerequisites
 
-1. Download Bryntum Scheduler from Bryntums CustomerZone
-2. Copy `scheduler.stockhol.css` to the `css` folder
-3. Copy `scheduler.module.js` to the `js` folder
+1. Download DHTMLX Scheduler from https://dhtmlx.com/docs/products/dhtmlxScheduler
+2. Copy `dhtmlxscheduler_material.css` to the `css` folder
+3. Copy `dhtmlxscheduler.js` and `dhtmlxscheduler_timeline.js` to the `js` folder
 
 ## Measure
 

@@ -2,9 +2,12 @@ import { RenderTimer, FPS, Scroller } from '../util/util.js';
 
 async function init() {
     const resourceResponse = await fetch('../util/2500-resources.json');
-    const resources = await resourceResponse.json();
+    let resources = await resourceResponse.json();
     const eventResponse = await fetch('../util/50000-events.json');
-    const events = await eventResponse.json();
+    let events = await eventResponse.json();
+
+//    resources = resources.filter(r => r.id < 500);
+//    events = events.filter(r => r.resourceId < 500);
 
     // Map to format used by dhtmlx
     resources.forEach(r => {
@@ -51,6 +54,7 @@ async function init() {
                 FPS.start();
                 Scroller.scroll({
                     element : document.querySelector('.dhx_timeline_scrollable_data'),
+                    //distance : 30000,
                     callback() {
                         FPS.stop();
                     }

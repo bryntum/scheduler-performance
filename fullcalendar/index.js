@@ -53,7 +53,7 @@ async function init() {
         FPS.start();
         Scroller.scroll({
             element : document.querySelector('.fc-body .fc-time-area .fc-scroller'),
-            distance : 30000,
+            distance : 30000, // Cannot render larger dataset, so cannot scroll further
             callback() {
                 FPS.stop();
             }

@@ -3,7 +3,7 @@
 ## Prerequisites
 
 1. Download Bryntum Scheduler from Bryntums CustomerZone
-2. Copy `scheduler.stockhol.css` to the `css` folder
+2. Copy `scheduler.stockholm.css` to the `css` folder
 3. Copy `scheduler.module.js` to the `js` folder
 
 ## Measure
