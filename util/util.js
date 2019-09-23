@@ -74,6 +74,10 @@ export class RenderTimer {
         this.start = performance.now();
         this.running = true;
 
+        const promise = new Promise(resolve => {
+            this.resolve = resolve;
+        });
+
         console.log('Starting initial rendering measurement');
 
         callback && callback();
@@ -81,6 +85,8 @@ export class RenderTimer {
         if (sync) {
             this.stop();
         }
+
+        return promise;
     }
 
     /**
@@ -95,6 +101,8 @@ export class RenderTimer {
             });
 
             this.running = false;
+
+            this.resolve();
         }
     }
 }
