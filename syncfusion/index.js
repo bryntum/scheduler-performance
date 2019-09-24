@@ -1,4 +1,4 @@
-import { RenderTimer, FPS, Scroller } from '../util/util.js';
+import { RenderTimer, FPS, Scroller, count } from '../util/util.js';
 
 async function init() {
     const resourceResponse = await fetch('../util/2500-resources.json');
@@ -6,8 +6,8 @@ async function init() {
     const eventResponse = await fetch('../util/50000-events.json');
     let events = await eventResponse.json();
 
-    resources = resources.filter(r => r.id < 500);
-    events = events.filter(r => r.resourceId < 500);
+    resources = resources.filter(r => r.id < count);
+    events = events.filter(r => r.resourceId < count);
 
     resources.forEach(r => {
         r.text = r.firstName + ' ' + r.surname;
@@ -18,19 +18,17 @@ async function init() {
         callback() {
             let count = 0;
             const scheduler = new ej.schedule.Schedule({
-                width          : '1024px',
-                height         : '768px',
-                selectedDate   : new Date(2019, 8, 20),
-                currentView    : 'TimelineWeek',
-                views          : [
-                    { option : 'TimelineWeek', allowVirtualScrolling : true, interval : 2 }
+                width         : '1024px',
+                height        : '768px',
+                selectedDate  : new Date(2019, 8, 22),
+                currentView   : 'TimelineWeek',
+                views         : [
+                    { option : 'TimelineWeek', allowVirtualScrolling : true }
                 ],
-                rowAutoHeight  : true,
-                showHeaderBar  : false,
-                showQuickInfo  : false,
-                // To start on same day as others
-                firstDayOfWeek : 5,
-                eventSettings  : {
+                rowAutoHeight : true,
+                showHeaderBar : false,
+                showQuickInfo : false,
+                eventSettings : {
                     dataSource : events,
                     fields     : {
                         id        : 'id',
@@ -39,7 +37,7 @@ async function init() {
                         endTime   : { title : 'End', name : 'endDate' }
                     }
                 },
-                resources      : [ {
+                resources     : [ {
                     field         : 'resourceId',
                     title         : 'Name',
                     name          : 'Resources',
@@ -48,10 +46,15 @@ async function init() {
                     textField     : 'text',
                     idField       : 'id'
                 } ],
-                group          : {
+                group         : {
                     enableCompactView : false,
                     resources         : [ 'Resources' ]
-                }
+                },
+                timeScale     : {
+                    enable    : true,
+                    interval  : 60,
+                    slotCount : 1
+                },
             });
             scheduler.appendTo('#container');
             const fn = () => {
@@ -69,7 +72,7 @@ async function init() {
         FPS.start();
         Scroller.scroll({
             element : document.querySelector('.e-content-wrap'),
-            distance : 30000,
+            distance : Math.min(count * 50, 75000),
             callback() {
                 FPS.stop();
             }

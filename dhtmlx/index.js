@@ -1,4 +1,4 @@
-import { RenderTimer, FPS, Scroller } from '../util/util.js';
+import { RenderTimer, FPS, Scroller, count } from '../util/util.js';
 
 async function init() {
     const resourceResponse = await fetch('../util/2500-resources.json');
@@ -6,8 +6,8 @@ async function init() {
     const eventResponse = await fetch('../util/50000-events.json');
     let events = await eventResponse.json();
 
-//    resources = resources.filter(r => r.id < 500);
-//    events = events.filter(r => r.resourceId < 500);
+   resources = resources.filter(r => r.id < count);
+   events = events.filter(r => r.resourceId < count);
 
     // Map to format used by dhtmlx
     resources.forEach(r => {
@@ -25,16 +25,16 @@ async function init() {
 
     RenderTimer.start({
         callback() {
-            var days = 9;
+            var days = 7;
             scheduler.createTimelineView({
                 name            : 'timeline',
                 x_unit          : 'hour',
                 x_date          : '%H',
                 x_step          : 1,
                 x_size          : 24 * days,
-                x_start         : 8,
+                x_start         : 0,
                 scrollable      : true,
-                scroll_position : new Date(2019, 8, 20),
+                scroll_position : new Date(2019, 8, 22),
                 column_width    : 20,
                 x_length        : 24 * days,
                 y_unit          : resources,
@@ -47,14 +47,14 @@ async function init() {
                 dx              : 130
             });
 
-            scheduler.init('container', new Date(2019, 8, 20), 'timeline');
+            scheduler.init('container', new Date(2019, 8, 22), 'timeline');
             scheduler.parse(events);
 
             setTimeout(() => {
                 FPS.start();
                 Scroller.scroll({
                     element : document.querySelector('.dhx_timeline_scrollable_data'),
-                    //distance : 30000,
+                    distance : Math.min(count * 50, 75000),
                     callback() {
                         FPS.stop();
                     }

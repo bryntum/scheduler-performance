@@ -1,15 +1,14 @@
 import { Scheduler } from './js/scheduler.module.js';
-import { RenderTimer, FPS, Scroller } from '../util/util.js';
+import { RenderTimer, FPS, Scroller, count } from '../util/util.js';
 
 async function init() {
     const resourceResponse = await fetch('../util/2500-resources.json');
     let resources = await resourceResponse.json();
     const eventResponse = await fetch('../util/50000-events.json');
     let events = await eventResponse.json();
-    //const events = EventGenerator.generate();
 
-    resources = resources.filter(r => r.id < 500);
-    events = events.filter(r => r.resourceId < 500);
+    resources = resources.filter(r => r.id < count);
+    events = events.filter(r => r.resourceId < count);
 
     // Map to format used by bryntum
     resources.forEach(r => {
@@ -66,7 +65,7 @@ async function init() {
                         }
                     }
                 },
-                startDate           : new Date(2019, 8, 20, 8),
+                startDate           : new Date(2019, 8, 22),
                 endDate             : new Date(2019, 8, 29),
                 useInitialAnimation : false,
 
@@ -78,7 +77,7 @@ async function init() {
                 FPS.start();
                 Scroller.scroll({
                     element : scheduler.bodyContainer,
-                    //distance : 30000,
+                    distance : Math.min(count * 50, 75000),
                     callback() {
                         FPS.stop();
                     }

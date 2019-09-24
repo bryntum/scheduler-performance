@@ -1,4 +1,4 @@
-import { RenderTimer, FPS, Scroller } from '../util/util.js';
+import { RenderTimer, FPS, Scroller, count } from '../util/util.js';
 
 $(async function () {
     const resourceResponse = await fetch('../util/2500-resources.json');
@@ -6,8 +6,8 @@ $(async function () {
     const eventResponse = await fetch('../util/50000-events.json');
     let events = await eventResponse.json();
 
-    resources = resources.filter(r => r.id < 500);
-    events = events.filter(r => r.resourceId < 500);
+    resources = resources.filter(r => r.id < count);
+    events = events.filter(r => r.resourceId < count);
 
     // Map to format used by devextreme
     events.forEach(e => {
@@ -25,8 +25,7 @@ $(async function () {
                 dataSource               : events,
                 views                    : [ "timelineWeek" ],
                 currentView              : "timelineWeek",
-                currentDate              : new Date(2019, 8, 20),
-                firstDayOfWeek           : 5,
+                currentDate              : new Date(2019, 8, 22),
                 startDayHour             : 0,
                 endDayHour               : 24,
                 cellDuration             : 60,
@@ -49,7 +48,7 @@ $(async function () {
         FPS.start();
         Scroller.scroll({
             element : document.querySelector('.dx-scheduler-date-table-scrollable .dx-scrollable-container'),
-            distance : 30000, // Cannot render larger dataset, so cannot scroll further
+            distance : Math.min(count * 50, 75000),
             callback() {
                 FPS.stop();
             }

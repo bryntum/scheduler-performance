@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Kendo UI Scheduler (Timeline)</title>
+    <link href="css/kendo.common.min.css" rel="stylesheet">
+    <link href="css/kendo.default.min.css" rel="stylesheet">
+    <script src="js/jquery.min.js"></script>
+    <script src="js/kendo.all.min.js"></script>
+
+    <style>
+        body {
+            margin: 0;
+        }
+
+        #container {
+            width: 1024px;
+            height: 768px;
+        }
+
+        .k-scheduler-toolbar,
+        .k-scheduler-footer
+        {
+            /* make them invisible */
+            display: none;
+
+            /* prevent height and paddings from influencing the size calculations */
+            height: 0;
+            padding: 0;
+            overflow: hidden;
+        }
+    </style>
+</head>
+
+<body>
+<div id="container" >
+
+</div>
+<script type="module" src="index.js"></script>
+</body>
+
+</html>

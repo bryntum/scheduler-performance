@@ -1,4 +1,4 @@
-import { RenderTimer, FPS, Scroller } from '../util/util.js';
+import { RenderTimer, FPS, Scroller, count } from '../util/util.js';
 
 async function init() {
     const resourceResponse = await fetch('../util/2500-resources.json');
@@ -6,8 +6,8 @@ async function init() {
     const eventResponse = await fetch('../util/50000-events.json');
     let events = await eventResponse.json();
 
-    resources = resources.filter(r => r.id < 500);
-    events = events.filter(r => r.resourceId < 500);
+    resources = resources.filter(r => r.id < count);
+    events = events.filter(r => r.resourceId < count);
 
     resources.forEach(r => {
         r.title = r.firstName + ' ' + r.surname;
@@ -24,9 +24,9 @@ async function init() {
             const calendar = new FullCalendar.Calendar(document.getElementById('container'), {
                 plugins           : [ 'resourceTimeline' ],
                 header            : false,
-                now               : '2019-09-20',
+                now               : '2019-09-22',
                 editable          : false,
-                scrollTime        : '08:00',
+                scrollTime        : '00:00',
                 defaultView       : 'resourceTimelineSevenDays',
                 views             : {
                     resourceTimelineSevenDays : {
@@ -53,13 +53,12 @@ async function init() {
         FPS.start();
         Scroller.scroll({
             element : document.querySelector('.fc-body .fc-time-area .fc-scroller'),
-            distance : 30000, // Cannot render larger dataset, so cannot scroll further
+            distance : Math.min(count * 50, 75000),
             callback() {
                 FPS.stop();
             }
         });
     }, 500);
-
 }
 
 init();

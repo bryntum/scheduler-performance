@@ -231,3 +231,5 @@ export class EventGenerator {
         return events;
     }
 }
+
+export const count = 25;
