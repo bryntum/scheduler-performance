@@ -6,8 +6,8 @@ async function init() {
     const eventResponse = await fetch('../util/50000-events.json');
     let events = await eventResponse.json();
 
-    resources = resources.filter(r => r.id < 50);
-    events = events.filter(r => r.resourceId < 50);
+    resources = resources.filter(r => r.id < count);
+    events = events.filter(r => r.resourceId < count);
 
     resources.forEach(r => {
         r.value = r.id;

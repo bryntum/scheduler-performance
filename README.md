@@ -29,13 +29,13 @@ scroll distance was measured and used to calculate an average FPS value.
 
 All measurements taken on a 2016 MacBook Pro 13-inch (2 GHz Intel Core i5, 8GB RAM).
 
-| Grid          |Initial rendering | Average FPS |
-|---------------|------------------|-------------|
-| Bryntum       |                  |             |
-| DevExtreme    |                  |             |
-| DHTMLX        |                  |             |
-| FullCalendar  |                  |             |
-| SyncFusion    |                  |             |
-
+| Grid          | Small rendering   | Small FPS   | Large rendering | Large FPS | 
+|---------------|-------------------|-------------|-----------------|-----------|
+| Bryntum       | 291 ms            | 60          | 666 ms          | 48        |
+| DevExtreme    | 12507 ms          | 25          | Failed          | -         |
+| DHTMLX        | 192 ms            | 53          | 579             | 31        |
+| FullCalendar  | 437 ms            | 36          | 18,791 ms       | 0.5       |
+| Kendo         | 2636 ms           | 23          | 108,642 ms      | ~0        |
+| SyncFusion    | 1891 ms           | 9           | 2095 ms         | 3         |
 
 The full set of results can be viewed in this [Google Sheet](https://docs.google.com/spreadsheets/d/1zZ7YqjYycOfx2oR25QRJWU6W3gHb7qSksqN6rnY6dyg)

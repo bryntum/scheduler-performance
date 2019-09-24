@@ -232,4 +232,4 @@ export class EventGenerator {
     }
 }
 
-export const count = 25;
+export const count = 50;
